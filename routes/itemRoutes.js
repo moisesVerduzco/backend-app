@@ -50,18 +50,19 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Borrar un ítem
 router.delete('/:id', async (req, res) => {
     try {
         const item = await Item.findById(req.params.id);
         if (!item) {
-            return res.status(404).json({ msg: 'Item not found' });
+            return res.status(404).json({ msg: 'Item not foundd' });
         }
-        await item.remove();
+        await item.deleteOne(); // Corrected line
         res.json({ msg: 'Item removed' });
     } catch (err) {
-        res.status(500).send('Server Error');
+        res.status(500).send('Server Errorr');
     }
 });
+
+
 
 module.exports = router;
